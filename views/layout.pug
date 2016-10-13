@@ -1,0 +1,47 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='UTF-8')
+		meta(name='viewport', content='width=device-width')
+
+		title= title
+		block css
+		link(href='/css/style.css', rel='stylesheet')
+		link(href='/components/bootstrap/dist/css/bootstrap.css', rel='stylesheet')
+		link(href='https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css', rel='stylesheet')
+		link(href='/css/map.css', rel='stylesheet')
+	block js
+		if ENV_DEVELOPMENT
+			script(src='http://localhost:35729/livereload.js')
+	body
+		.navbar.navbar-default(role='navigation')
+			.container
+				.navbar-header
+					button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href='#') CruzID Gold Test
+				.navbar-collapse.collapse
+					ul.nav.navbar-nav
+						if user
+							li(class=(title == 'Members' ? 'active' : ''))
+								a(href='/map') Members Map
+							li(class=(title == 'Profile' ? 'active' : ''))
+								a(href='/profile') Profile
+						if !user
+							li(class=(title == 'Login' ? 'active' : ''))
+								a(href='/users/login') Login
+					ul.nav.navbar-nav.navbar-right
+						if user
+							li
+								a(href='/users/logout') Logout
+		.container-fluid
+			
+			block content
+
+			script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+			script(src='/components/bootstrap/dist/js/bootstrap.js')
+			script(src='https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js')
+			script(src='/js/map.js')
