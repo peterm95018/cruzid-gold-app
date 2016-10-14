@@ -30,7 +30,9 @@ router.get('/', function(req, res) {
 
 /* route to path spec'd in passport.use */
 router.post('/login/callback',
-  passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
+  passport.authenticate('saml', { 
+    failureRedirect: '/users/login', 
+    failureFlash: true }),
   function(req, res) {
     res.redirect('/');
   }
@@ -38,12 +40,26 @@ router.post('/login/callback',
 
 /* authenticate */
 router.get('/login',
-  passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
+  passport.authenticate('saml', { 
+    failureRedirect: '/login', 
+    failureFlash: true }),
   function(req, res) {
   	/* we're authenticated */
     res.redirect('/map');
   }
 );
+
+router.get('/profile', function(req, res) {
+  if (req.isAuthenticated()) {
+    res.render('profile', {
+      user: req.user
+    });
+  } else {
+    res.redirect('/');
+  }
+});
+
+/* to do /logout */
 
 
 module.exports = router;
