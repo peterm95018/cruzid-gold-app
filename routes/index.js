@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'CruzID Gold App' });
 });
 
 /* Get Authenticated Pages Profile, Map */
@@ -14,7 +14,7 @@ router.get('/profile', ensureAuthenticated, function(req, res, next) {
 });
 
 router.get('/map', ensureAuthenticated, function(req, res, next) {
-  res.render('map', { title: 'map' });
+  res.render('map', { title: 'Map' });
 });
 
 function ensureAuthenticated(req, res, next){
