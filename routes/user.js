@@ -23,9 +23,17 @@ passport.use(new SamlStrategy({
 );
 
 
-/* GET users listing. */
+/* Home Page */
 router.get('/', function(req, res) {
-  res.send('respond with a resource');
+  if (req.isAuthenticated()) {
+    res.render('index', {
+      user: req.user
+    });
+  } else {
+    res.render('index', {
+      user: null
+    });
+  }
 });
 
 /* route to path spec'd in passport.use */
@@ -38,7 +46,7 @@ router.post('/login/callback',
   }
 );
 
-/* authenticate */
+/* authenticate the user */
 router.get('/login',
   passport.authenticate('saml', { 
     failureRedirect: '/login', 
@@ -49,6 +57,7 @@ router.get('/login',
   }
 );
 
+/* authenticated Profile page outputs attributes */
 router.get('/profile', function(req, res) {
   if (req.isAuthenticated()) {
     res.render('profile', {
@@ -59,7 +68,12 @@ router.get('/profile', function(req, res) {
   }
 });
 
-/* to do /logout */
+/* logout */
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
 
 
 module.exports = router;
