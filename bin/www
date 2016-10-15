@@ -5,10 +5,10 @@ var app = require('../app');
 var fs = require('fs');
 var https = require('https');
 
-// fs.readFileSync('/etc/ssl/certs/nodejs-crm_ucsc_edu_cert.cer');
-// fs.readFileSync('/etc/ssl/private/nodejs-crm.ucsc.edu.key');
+// fs.readFileSync('/etc/ssl/certs/nodejs-crm_ucsc_edu_cert.cer', 'utf8');
+// fs.readFileSync('/etc/ssl/private/nodejs-crm.ucsc.edu.key', 'utf8');
 
-var port = 3443;
+var port = 3000;
 /**
  * Create SSL credentials
  */
