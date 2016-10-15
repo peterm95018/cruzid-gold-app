@@ -7,11 +7,7 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'CruzID Gold App' });
 });
 
-/* Get Authenticated Pages Profile, Map */
-router.get('/profile', ensureAuthenticated, function(req, res, next) {
-	res.locals.testUser = req.session.passport.user;
-  res.render('profile', { title: 'Profile' });
-});
+
 
 // router.get('/map', ensureAuthenticated, function(req, res, next) {
 //   res.render('map', { title: 'Map' });
