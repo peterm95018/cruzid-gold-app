@@ -13,7 +13,11 @@ router.get('/profile', ensureAuthenticated, function(req, res, next) {
   res.render('profile', { title: 'Profile' });
 });
 
-router.get('/map', ensureAuthenticated, function(req, res, next) {
+// router.get('/map', ensureAuthenticated, function(req, res, next) {
+//   res.render('map', { title: 'Map' });
+// });
+
+router.get('/map', function(req, res, next) {
   res.render('map', { title: 'Map' });
 });
 
